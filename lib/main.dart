@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:testtextflutter/carddesign2.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -29,11 +31,10 @@ class _MyWidgetState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Center(
-              child: Text(
-            "Anonymous Method",
+          title: Text(
+            "Million Facts",
             style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-          )),
+          ),
           actions: <Widget>[
             IconButton(
               onPressed: () {},
@@ -55,13 +56,17 @@ class _MyWidgetState extends State<MyApp> {
             ),
           ],
         ),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(textmsg),
-          ],
-        )),
+        body: Container(
+          color: Colors.grey,
+          child: Center(
+              child: ListView(
+            children: <Widget>[
+              newCardDesign2(),
+              newCardDesign2(),
+              newCardDesign2()
+            ],
+          )),
+        ),
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           color: Colors.black,
