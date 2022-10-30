@@ -42,12 +42,7 @@ class _MyWidgetState extends State<MyApp> {
               tooltip: "show SnackBar",
             ),
             IconButton(
-              onPressed: () {
-                setState(() {
-                  textmsg = "Silakan Tekan Tombol Di bawah";
-                  count = 1;
-                });
-              },
+              onPressed: () {},
               color: Colors.grey,
               icon: const Icon(Icons.refresh),
               tooltip: "Refresh",
@@ -65,26 +60,6 @@ class _MyWidgetState extends State<MyApp> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(textmsg),
-            FloatingActionButton(
-                child: Icon(Icons.add),
-                onPressed: () {
-                  setState(() {
-                    textmsg = "Tombol sudah ditekan $count kali";
-                    count++;
-                  });
-                }),
-            GestureDetector(
-              onTap: () {
-                setState(() {});
-              },
-              child: AnimatedContainer(
-                color: Color.fromARGB(255, random.nextInt(256),
-                    random.nextInt(256), random.nextInt(256)),
-                duration: Duration(seconds: 1),
-                width: random.nextInt(101) + 50,
-                height: random.nextInt(101) + 50,
-              ),
-            ),
           ],
         )),
         bottomNavigationBar: BottomAppBar(
