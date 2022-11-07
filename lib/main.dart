@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testtextflutter/carddesign2.dart';
 import 'package:testtextflutter/carditemlist.dart';
+import 'package:testtextflutter/settinglist.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,17 +21,14 @@ class _MyWidgetState extends State<MyApp> {
   List<Widget> _widgetOptions = <Widget>[
     cardlist(),
     Text(
-      'Index 1: Business',
+      'Index 1',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2',
       style: optionStyle,
     ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
+    settingList(),
   ];
 
   void _onItemTapped(int index) {
