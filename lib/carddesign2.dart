@@ -35,8 +35,10 @@ class newCardDesign2 extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(
-                          20, MediaQuery.of(context).size.height * 0.25, 0, 20),
-                      padding: EdgeInsets.only(left: 195),
+                          MediaQuery.of(context).size.width * 0.5,
+                          MediaQuery.of(context).size.height * 0.25,
+                          0,
+                          20),
                       child: Row(children: <Widget>[
                         IconButton(
                             onPressed: () {}, icon: Icon(Icons.bookmark)),
