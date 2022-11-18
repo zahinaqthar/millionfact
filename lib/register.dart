@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:testtextflutter/homePage.dart';
+import 'package:http/http.dart' as http;
+import 'package:testtextflutter/services/auth.dart';
+import 'package:testtextflutter/services/global.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -9,6 +14,27 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
+  String _email = '', _password = '', _name = '';
+
+  createAccountPressed() async {
+    bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(_email);
+    if (emailValid) {
+      http.Response response =
+          await AuthServices.register(_name, _email, _password);
+      Map responseMap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => homePage()));
+      } else {
+        errorSnackBar(context, responseMap.values.first[0]);
+      }
+    } else {
+      errorSnackBar(context, 'email not valid');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,6 +88,9 @@ class _MyRegisterState extends State<MyRegister> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
+                            onChanged: (value) {
+                              _name = value;
+                            },
                           ),
                           SizedBox(
                             height: 30,
@@ -86,6 +115,9 @@ class _MyRegisterState extends State<MyRegister> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
+                            onChanged: (value) {
+                              _email = value;
+                            },
                           ),
                           SizedBox(
                             height: 30,
@@ -111,6 +143,9 @@ class _MyRegisterState extends State<MyRegister> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
+                            onChanged: (value) {
+                              _password = value;
+                            },
                           ),
                           SizedBox(
                             height: 40,
@@ -131,11 +166,12 @@ class _MyRegisterState extends State<MyRegister> {
                                 child: IconButton(
                                     color: Colors.white,
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  homePage()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             homePage()));
+                                      createAccountPressed();
                                     },
                                     icon: Icon(
                                       Icons.arrow_forward,

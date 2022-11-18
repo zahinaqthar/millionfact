@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:testtextflutter/homePage.dart';
+import 'package:testtextflutter/services/auth.dart';
+import 'package:testtextflutter/services/global.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -9,6 +14,23 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+  String _email = '', _password = '';
+
+  loginPressed() async {
+    if (_email.isNotEmpty && _password.isNotEmpty) {
+      http.Response response = await AuthServices.login(_email, _password);
+      Map responseMap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => homePage()));
+      } else {
+        errorSnackBar(context, responseMap.values.first[0]);
+      }
+    } else {
+      errorSnackBar(context, 'Enter all required field');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,6 +70,9 @@ class _MyLoginState extends State<MyLogin> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
+                            onChanged: (value) {
+                              _email = value;
+                            },
                           ),
                           SizedBox(
                             height: 30,
@@ -62,6 +87,9 @@ class _MyLoginState extends State<MyLogin> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
+                            onChanged: (value) {
+                              _password = value;
+                            },
                           ),
                           SizedBox(
                             height: 40,
@@ -80,11 +108,12 @@ class _MyLoginState extends State<MyLogin> {
                                 child: IconButton(
                                     color: Colors.white,
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  homePage()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             homePage()));
+                                      loginPressed();
                                     },
                                     icon: Icon(
                                       Icons.arrow_forward,
