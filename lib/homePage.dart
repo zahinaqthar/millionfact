@@ -1,7 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:testtextflutter/carddesign2.dart';
 import 'package:testtextflutter/carditemlist.dart';
+import 'package:testtextflutter/login.dart';
+import 'package:testtextflutter/register.dart';
+import 'package:testtextflutter/services/auth.dart';
+import 'package:testtextflutter/services/global.dart';
 import 'package:testtextflutter/settinglist.dart';
+import 'package:http/http.dart' as http;
 
 class homePage extends StatefulWidget {
   const homePage({Key? key}) : super(key: key);
@@ -33,6 +40,27 @@ class _homePageState extends State<homePage> {
     });
   }
 
+  getToken() async {
+    String obtainedToken = await AuthServices.hasToken();
+    if (obtainedToken == null) {
+      errorSnackBar(context, "Cannot LogOut");
+    }
+    return obtainedToken;
+  }
+
+  loggOutPressed() async {
+    String token = await getToken();
+    http.Response response = await AuthServices.logout(token);
+    if (response.statusCode == 200) {
+      // errorSnackBar(context, responseMap['data'].toString());
+      await AuthServices.unsetLocalToken();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MyRegister()));
+    } else {
+      errorSnackBar(context, "Cannot LogOut");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +85,7 @@ class _homePageState extends State<homePage> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, 'login');
+              loggOutPressed();
             },
             color: Colors.grey,
             icon: const Icon(Icons.logout),

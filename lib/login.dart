@@ -16,15 +16,27 @@ class MyLogin extends StatefulWidget {
 class _MyLoginState extends State<MyLogin> {
   String _email = '', _password = '';
 
+  @override
+  loggedin() async {
+    var obtainedEmail = await AuthServices.hasToken();
+    if (obtainedEmail != null) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => homePage()));
+    }
+  }
+
   loginPressed() async {
     if (_email.isNotEmpty && _password.isNotEmpty) {
       http.Response response = await AuthServices.login(_email, _password);
       Map responseMap = jsonDecode(response.body);
+      await AuthServices.setLocalToken(responseMap['token']);
+
       if (response.statusCode == 200) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => homePage()));
+        // errorSnackBar(context, obtainedEmail);
       } else {
-        errorSnackBar(context, responseMap.values.first[0]);
+        errorSnackBar(context, responseMap.values.first);
       }
     } else {
       errorSnackBar(context, 'Enter all required field');
@@ -33,6 +45,7 @@ class _MyLoginState extends State<MyLogin> {
 
   @override
   Widget build(BuildContext context) {
+    loggedin();
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
