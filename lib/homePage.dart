@@ -54,8 +54,8 @@ class _homePageState extends State<homePage> {
     if (response.statusCode == 200) {
       // errorSnackBar(context, responseMap['data'].toString());
       await AuthServices.unsetLocalToken();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyRegister()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => MyLogin()));
     } else {
       errorSnackBar(context, "Cannot LogOut");
     }
