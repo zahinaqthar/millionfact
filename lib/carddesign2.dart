@@ -37,13 +37,23 @@ class newCardDesign2 extends StatelessWidget {
                           color: Colors.grey),
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      decoration: BoxDecoration(
+                        height: MediaQuery.of(context).size.height * 0.25,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(35),
                               topRight: Radius.circular(35)),
-                          color: Colors.white),
-                    ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(35),
+                              topRight: Radius.circular(35)),
+                          child: Image.network(
+                            img ??
+                                'https://www.shutterstock.com/image-photo/lonely-oak-tree-on-green-260nw-1093098482.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                        )),
                     Container(
                       margin: EdgeInsets.fromLTRB(
                           MediaQuery.of(context).size.width * 0.5,
@@ -65,17 +75,23 @@ class newCardDesign2 extends StatelessWidget {
                       ]),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(
-                          20,
-                          50 + MediaQuery.of(context).size.height * 0.25,
-                          0,
-                          20),
-                      child: Text(
-                        title,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.black, fontSize: 25),
-                      ),
-                    ),
+                        margin: EdgeInsets.fromLTRB(
+                            20,
+                            50 + MediaQuery.of(context).size.height * 0.25,
+                            0,
+                            20),
+                        child: RichText(
+                            overflow: TextOverflow.ellipsis,
+                            text: TextSpan(
+                                text: title,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20)))
+                        // Text(
+                        //   title,
+                        //   textAlign: TextAlign.left,
+                        //   style: TextStyle(color: Colors.black, fontSize: 25),
+                        // ),
+                        ),
                     Container(
                       margin: EdgeInsets.fromLTRB(
                           20,
