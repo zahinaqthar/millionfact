@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:testtextflutter/homePage.dart';
 import 'package:testtextflutter/login.dart';
+import 'package:testtextflutter/provider/cardprovider.dart';
 import 'package:testtextflutter/register.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider<CardProvider>(
+      create: (_) => CardProvider(), child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {

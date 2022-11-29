@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:testtextflutter/carddesign2.dart';
 import 'package:testtextflutter/carditemlist.dart';
 import 'package:testtextflutter/login.dart';
+import 'package:testtextflutter/provider/cardprovider.dart';
 import 'package:testtextflutter/register.dart';
 import 'package:testtextflutter/services/auth.dart';
 import 'package:testtextflutter/services/global.dart';
@@ -27,10 +28,7 @@ class _homePageState extends State<homePage> {
       'Index 1',
       style: optionStyle,
     ),
-    Text(
-      'Index 2',
-      style: optionStyle,
-    ),
+    mylist(),
     settingList(),
   ];
 

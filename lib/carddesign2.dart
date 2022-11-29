@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class newCardDesign2 extends StatelessWidget {
-  const newCardDesign2({Key? key}) : super(key: key);
+  final String title, body, category;
+  final bool ispressed;
+  Function() iconTapped;
+  final String? img;
+
+  newCardDesign2(
+      {required this.title,
+      required this.body,
+      required this.category,
+      this.img,
+      required this.ispressed,
+      required this.iconTapped});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +52,13 @@ class newCardDesign2 extends StatelessWidget {
                           20),
                       child: Row(children: <Widget>[
                         IconButton(
-                            onPressed: () {}, icon: Icon(Icons.bookmark)),
+                            onPressed: iconTapped,
+                            icon: Icon(
+                              Icons.bookmark,
+                              color: (ispressed == true)
+                                  ? Colors.black
+                                  : Colors.white,
+                            )),
                         IconButton(onPressed: () {}, icon: Icon(Icons.share)),
                         IconButton(
                             onPressed: () {}, icon: Icon(Icons.play_circle)),
@@ -54,7 +71,7 @@ class newCardDesign2 extends StatelessWidget {
                           0,
                           20),
                       child: Text(
-                        "Title uuuuuuuu",
+                        title,
                         textAlign: TextAlign.left,
                         style: TextStyle(color: Colors.black, fontSize: 25),
                       ),
@@ -70,6 +87,12 @@ class newCardDesign2 extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(30)),
+                      child: Center(
+                        child: Text(
+                          category,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(
@@ -78,7 +101,7 @@ class newCardDesign2 extends StatelessWidget {
                           0,
                           20),
                       child: Text(
-                        "Body Text",
+                        body,
                         textAlign: TextAlign.left,
                         style: TextStyle(color: Colors.black, fontSize: 15),
                       ),
