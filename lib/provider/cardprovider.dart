@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:testtextflutter/carddesign2.dart';
+import 'package:testtextflutter/cerddetail.dart';
 import 'package:testtextflutter/services/getapi.dart';
 import 'package:testtextflutter/services/reqapi.dart';
 import 'package:provider/provider.dart';
@@ -16,21 +18,32 @@ FutureBuilder<List<Artcicle>> articleinit = FutureBuilder(
             itemCount: articles.length,
             itemBuilder: (context, index) {
               final currentArticle = articles[index];
-              return newCardDesign2(
-                title: currentArticle.title,
-                body: currentArticle.description,
-                category: currentArticle.source.name,
-                img: currentArticle.urlToImage,
-                ispressed: mylist.contains(currentArticle) ? true : false,
-                iconTapped: (mylist.contains(currentArticle))
-                    ? () {
-                        context
-                            .read<CardProvider>()
-                            .removeFromList(currentArticle);
-                      }
-                    : () {
-                        context.read<CardProvider>().addToList(currentArticle);
-                      },
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              FactDetails(artdetails: currentArticle)));
+                },
+                child: newCardDesign2(
+                  title: currentArticle.title,
+                  body: currentArticle.description,
+                  category: currentArticle.source.name,
+                  img: currentArticle.urlToImage,
+                  ispressed: mylist.contains(currentArticle) ? true : false,
+                  iconTapped: (mylist.contains(currentArticle))
+                      ? () {
+                          context
+                              .read<CardProvider>()
+                              .removeFromList(currentArticle);
+                        }
+                      : () {
+                          context
+                              .read<CardProvider>()
+                              .addToList(currentArticle);
+                        },
+                ),
               );
             });
       } else {
