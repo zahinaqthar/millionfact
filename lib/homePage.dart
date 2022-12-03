@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testtextflutter/carddesign2.dart';
 import 'package:testtextflutter/carditemlist.dart';
+import 'package:testtextflutter/category.dart';
 import 'package:testtextflutter/login.dart';
 import 'package:testtextflutter/provider/cardprovider.dart';
 import 'package:testtextflutter/register.dart';
@@ -24,10 +26,7 @@ class _homePageState extends State<homePage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     cardlist(),
-    Text(
-      'Index 1',
-      style: optionStyle,
-    ),
+    Category(),
     mylist(),
     settingList(),
   ];
