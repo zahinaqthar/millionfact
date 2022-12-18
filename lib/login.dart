@@ -20,7 +20,7 @@ class _MyLoginState extends State<MyLogin> {
   loggedin() async {
     var obtainedEmail = await AuthServices.hasToken();
     if (obtainedEmail != null) {
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => homePage()));
     }
   }
@@ -32,7 +32,7 @@ class _MyLoginState extends State<MyLogin> {
       await AuthServices.setLocalToken(responseMap['token']);
 
       if (response.statusCode == 200) {
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => homePage()));
         // errorSnackBar(context, obtainedEmail);
       } else {
@@ -57,7 +57,7 @@ class _MyLoginState extends State<MyLogin> {
           children: [
             Container(),
             Container(
-              padding: EdgeInsets.only(left: 35, top: 130),
+              padding: EdgeInsets.only(left: 35, top: 100),
               child: Text(
                 'Welcome\nBack',
                 style: TextStyle(color: Colors.white, fontSize: 33),

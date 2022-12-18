@@ -25,7 +25,7 @@ class _MyRegisterState extends State<MyRegister> {
           await AuthServices.register(_name, _email, _password);
       Map responseMap = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => homePage()));
       } else {
         errorSnackBar(context, responseMap.values.first[0]);
@@ -51,7 +51,7 @@ class _MyRegisterState extends State<MyRegister> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 35, top: 30),
+              padding: EdgeInsets.only(left: 35, top: 20),
               child: Text(
                 'Create\nAccount',
                 style: TextStyle(color: Colors.white, fontSize: 33),

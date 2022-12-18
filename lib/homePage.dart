@@ -63,23 +63,12 @@ class _homePageState extends State<homePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
+        leading: Image(image: AssetImage('assets/iconlogo.png')),
         title: Text(
           "Million Facts",
           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            color: Colors.grey,
-            icon: const Icon(Icons.add_alert),
-            tooltip: "show SnackBar",
-          ),
-          IconButton(
-            onPressed: () {},
-            color: Colors.grey,
-            icon: const Icon(Icons.refresh),
-            tooltip: "Refresh",
-          ),
           IconButton(
             onPressed: () {
               loggOutPressed();
@@ -118,72 +107,6 @@ class _homePageState extends State<homePage> {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[800],
         onTap: _onItemTapped,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              child: Text(
-                "Ini Header",
-                style:
-                    TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-            ListTile(
-              title: const Text("Item 1"),
-              leading: Icon(Icons.alarm),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 2"),
-              leading: Icon(Icons.message),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 3"),
-              leading: Icon(Icons.email),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 4"),
-              leading: Icon(Icons.phone),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 5"),
-              leading: Icon(Icons.camera),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 6"),
-              leading: Icon(Icons.watch),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 7"),
-              leading: Icon(Icons.exit_to_app),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
       ),
     );
   }

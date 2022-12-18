@@ -24,7 +24,7 @@ class settingList extends StatelessWidget {
       children: [
         buildCard(Icons.density_medium_outlined, "Preferences"),
         buildCard(Icons.brightness_6, "Dark Mode"),
-        buildCard(Icons.add_alarm, "alaram add"),
+        buildCard(Icons.add_alarm, "Alarm add"),
         Container(
           margin: EdgeInsets.all(10),
           child: Text(

@@ -11,7 +11,12 @@ class FactDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(artdetails.title)),
+      appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(
+            artdetails.title,
+            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+          )),
       body: Column(children: <Widget>[
         Container(
             height: 200,

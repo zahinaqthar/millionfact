@@ -21,7 +21,7 @@ class _MyWidgetState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyLogin(),
+      home: homePage(),
       routes: {
         'register': (context) => MyRegister(),
         'login': (context) => MyLogin(),

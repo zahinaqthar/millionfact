@@ -17,22 +17,112 @@ class Category extends StatelessWidget {
         //     context, MaterialPageRoute(builder: (context) => cardlist()));
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return Scaffold(
-            appBar: AppBar(title: Text("TechCrunch")),
+            appBar: AppBar(
+                backgroundColor: Colors.black,
+                title: Text(
+                  "TechCrunch",
+                  style: TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                )),
             body: cardlist(),
           );
         }));
       },
-      child: Container(
-        margin: EdgeInsets.all(10),
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(
-            color: Colors.grey, borderRadius: BorderRadius.circular(15)),
-        child: Center(
-            child: Text(
-          card.initialData?.first.source.name ?? 'TechCrunch',
-          style: TextStyle(color: Colors.black54),
-        )),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, bottom: 10, right: 20, left: 10),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                    child: Text(
+                  card.initialData?.first.source.name ?? 'TechCrunch',
+                  style: TextStyle(color: Colors.black54),
+                )),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, bottom: 10, right: 20, left: 25),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                    child: Text(
+                  'Sport',
+                  style: TextStyle(color: Colors.black54),
+                )),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 20),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                    child: Text(
+                  'Education',
+                  style: TextStyle(color: Colors.black54),
+                )),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, bottom: 10, right: 20, left: 10),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                    child: Text(
+                  'Animal',
+                  style: TextStyle(color: Colors.black54),
+                )),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, bottom: 10, right: 20, left: 25),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                    child: Text(
+                  'Science',
+                  style: TextStyle(color: Colors.black54),
+                )),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 20),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                    child: Text(
+                  'Football',
+                  style: TextStyle(color: Colors.black54),
+                )),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
